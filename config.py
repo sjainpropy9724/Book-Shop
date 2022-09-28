@@ -7,7 +7,8 @@ from string import capwords
 '''Below EMAIL_ADDRESS and PASSWORD is for sending email(s) to users (constant values)'''
 
 EMAIL_ADDRESS = 'snt.bookshop@gmail.com'
-PASSWORD = 'S&T@bookshp@341'
+PASSWORD = 'zoubkusvlnuxsaqq'
+# PASSWORD = 'S&T@bookshp@341'
 
 # ----------------------------------------------------------------------
 '''This function is defined to send invoice of the order placed by any user
@@ -40,7 +41,7 @@ def Pdf_mailing(file_name, address):
    Module used here is 'mysql.connector'. '''
 
 def Inv_no_gen(a):
-    cam = mycam2.connect(host='localhost', user='root', passwd='Rinshu@03', database='book_shop')
+    cam = mycam2.connect(host='localhost', user='root', passwd='Swarit@123', database='book_shop')
     cursor = cam.cursor()
     st = ''
     st2 = ''
@@ -57,7 +58,7 @@ def Inv_no_gen(a):
         for i in range(0, 10):
             st2 += st[i]
             
-            # This query is done so as to get the total number of orders placed since the user has registered
+            # This query is done to get the total number of orders placed since the user has registered
     cursor.execute(f"SELECT count(ord_no) FROM orders WHERE user_name = '{a}'")
     ord_count = cursor.fetchone()
     # We are adding the result of the above query to above generated 'st2' and adding 1 to it
@@ -78,7 +79,7 @@ def Inv_no_gen(a):
 
 def Pdf_generate(ls1, ls2, inv, inv_no):
     lst_sum = []
-    cam = mycam2.connect(host='localhost', user='root', passwd='Rinshu@03', database='book_shop')
+    cam = mycam2.connect(host='localhost', user='root', passwd='Swarit@123', database='book_shop')
     cursor = cam.cursor()
     cursor.execute(f"SELECT count(ord_no) FROM orders WHERE user_name = '{ls1[10]}'")
     ord_count = cursor.fetchone()
@@ -176,7 +177,7 @@ def Pdf_generate(ls1, ls2, inv, inv_no):
     # Total calculated above will be displayed here
     pdf.cell(30, 5, f'{total}', 1, 1, 'R')
 
-    file_n = f"invoice{inv}{ord_count[0] + 1} "
+    file_n = f"invoice{inv}{ord_count[0] + 1}.pdf"
     path = f"D:/Swarit/Class 12/Class 12 Computer Project/invoices/{file_n}.pdf"
     pdf.output(f"{path}")  # Invoice generated and saved to local desktop
 
